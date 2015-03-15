@@ -11,7 +11,6 @@ import AVFoundation
 
 final class PlaySoundsViewController: UIViewController {
 
-    private var audio: AVAudioPlayer?
     private let audioEngine: AVAudioEngine = AVAudioEngine()
     internal var receivedAudio: RecordedAudio?
     private var audioFile: AVAudioFile?
@@ -21,14 +20,10 @@ final class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         //Evaluate if there is a recorded audio and creates an audio file which is required by Audio Engine
-        if let filePathUrl = receivedAudio?.filePathUrl
-        {
-            audio = AVAudioPlayer(contentsOfURL: filePathUrl, error: nil)
-            audio?.enableRate = true
+        if let filePathUrl = receivedAudio?.filePathUrl {
             audioFile = AVAudioFile(forReading: filePathUrl, error: nil)
         }
-        else
-        {
+        else {
             println("file is empty")
         }
     }
@@ -104,16 +99,5 @@ final class PlaySoundsViewController: UIViewController {
         audioEngine.startAndReturnError(nil)
         playerNode?.play()
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

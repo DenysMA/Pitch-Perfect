@@ -17,7 +17,6 @@ final class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate
     @IBOutlet weak var recordButton: UIButton!
     
     private var audioRecorder: AVAudioRecorder?
-    private var recordedAudio: RecordedAudio?
     private let recordImage = UIImage(named : "microphone")!
     private let pauseImage = UIImage(named : "pause")!
     
@@ -103,11 +102,15 @@ final class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
-        //When flag is true audio was recorded successfuly and creates a RecordedAudio object to pass it to the next screen
+        
+        //When flag is true audio was recorded successfully and creates a RecordedAudio object to pass it to the next screen
         if flag
         {
-            recordedAudio = RecordedAudio(filePathUrl: recorder.url,title: recorder.url.lastPathComponent!)
-            performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+            if let title = recorder.url.lastPathComponent {
+                
+                let recordedAudio = RecordedAudio(filePathUrl: recorder.url,title: title)
+                performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+            }
         }
         else
         {

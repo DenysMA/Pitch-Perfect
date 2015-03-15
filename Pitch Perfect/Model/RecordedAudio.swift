@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RecordedAudio: NSObject {
+final class RecordedAudio {
     
     var filePathUrl: NSURL?
     var title: String?
@@ -17,7 +17,6 @@ final class RecordedAudio: NSObject {
 
         self.filePathUrl = filePathUrl
         self.title = title
-        super.init()
         
     }
     
