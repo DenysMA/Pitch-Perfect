@@ -17,8 +17,8 @@ final class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate
     @IBOutlet weak var recordButton: UIButton!
     
     private var audioRecorder: AVAudioRecorder?
-    private let recordImage = UIImage(named : "microphone")!
-    private let pauseImage = UIImage(named : "pause")!
+    private let recordImage = UIImage(named : "microphone")
+    private let pauseImage = UIImage(named : "pause")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,7 @@ final class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate
         else
         {
     
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
             let currentDateTime = NSDate()
             let formatter = NSDateFormatter()
             formatter.dateFormat = "ddMMyyyy-HHmmss"
@@ -126,7 +126,7 @@ final class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate
         
         if segue.identifier == "stopRecording"
         {
-            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
+            let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
             playSoundsVC.receivedAudio = sender as? RecordedAudio
         }
         

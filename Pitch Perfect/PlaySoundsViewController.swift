@@ -19,7 +19,7 @@ final class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Evaluate if there is a recorded audio and creates an audio file which is required by Audio Engine
+        //Evaluate if there is a recorded audio and create audio file
         if let filePathUrl = receivedAudio?.filePathUrl {
             audioFile = AVAudioFile(forReading: filePathUrl, error: nil)
         }
@@ -62,7 +62,7 @@ final class PlaySoundsViewController: UIViewController {
         
     }
     
-    private func playAudio(rate:Float=1.0,pitch:Float=1.0,reverb:NSNumber?=nil){
+    private func playAudio(rate:Float=1.0,pitch:Float=1.0,reverb:Float?=nil){
         
         var effectNode: AVAudioUnit!
         
@@ -77,7 +77,7 @@ final class PlaySoundsViewController: UIViewController {
         //Check if there is a reverb value to create the specific effect Node
         if let reverb = reverb {
             var reverbNode = AVAudioUnitReverb()
-            reverbNode.wetDryMix = reverb.floatValue
+            reverbNode.wetDryMix = reverb
             effectNode = reverbNode
         }
             
